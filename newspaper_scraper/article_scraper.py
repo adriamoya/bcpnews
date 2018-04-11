@@ -9,7 +9,7 @@ from newspaper import Article
 
 class ArticleScraper(Article):
 
-	''' For a given article url, it downloads and parses some especific data and writes a JSON in the output_file '''
+	''' For a given article url, it downloads and parses some specific data and writes a JSON in the output_file '''
 
 	def __init__(self, url, output_file):
 
