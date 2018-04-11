@@ -1,113 +1,73 @@
 
-# Imports
+# ArticleScraper class built on top of Article from newspaper
 
-import os
 import json
-import codecs
-import pprint
 import datetime
 
 from newspaper import Article
 
-# Variables
 
-pp = pprint.PrettyPrinter(indent=4)
+class ArticleScraper(Article):
 
-input_file_path = '../expansion_hemeroteca/articles.json'
-output_file 	= codecs.open('articles_standar.json', 'w', encoding='utf-8')
+	''' For a given article url, it downloads and parses some especific data and writes a JSON in the output_file '''
+
+	def __init__(self, url, output_file):
+
+		''' Initialize ArticleScraper '''
+
+		self.output_file = output_file
+
+		self.article_obj = {}
+		self.article_obj['url'] = url
+
+		if self.article_obj:
+			self.article = Article(url)
+			self.parse_article()
 
 
-# Read data
+	def my_converter(self, o):
 
-data = []
-with open(input_file_path) as input_file:
+		''' Convert datetime to unicode (str) '''
 
-	for line in input_file:
-		data.append(json.loads(line))
+		if isinstance(o, datetime.datetime):
+			return o.__str__()
 
-# Functions (perhaps create a class on top of Article class)
 
-def parse_article(article_obj):
+	def parse_article(self):
 
-	''' Download, Parse and NLP a given article '''
-
-	if article_obj:
-
-		article = Article(article_obj['url'])
+		''' Download, Parse and NLP a given article '''
 
 		# download source code
-		article.download()
+		self.article.download()
 
 		# parse code
-		article.parse()
+		self.article.parse()
 
 		# populate article obj with parsed data
-		article_obj['title'] = article.title
-		article_obj['authors'] = article.authors
-		article_obj['publish_date'] = article.publish_date
-		article_obj['text'] = article.text
-		article_obj['top_image'] = article.top_image
+		self.article_obj['title'] = self.article.title
+		self.article_obj['authors'] = self.article.authors
+		self.article_obj['publish_date'] = self.article.publish_date
+		self.article_obj['text'] = self.article.text
+		self.article_obj['top_image'] = self.article.top_image
 
 		# article nlp
-		article.nlp()
+		self.article.nlp()
 
 		# populate article obj with nlp data
-		article_obj['summary'] = article.summary
-		article_obj['keywords'] = article.keywords
+		self.article_obj['summary'] = self.article.summary
+		self.article_obj['keywords'] = self.article.keywords
 
-		return article_obj
+		print(self.article_obj)
 
-
-def my_converter(o):
-
-	''' Convert datetime to unicode (str) '''
-
-	if isinstance(o, datetime.datetime):
-
-		return o.__str__()
+		return self.dump_article()
 
 
-def dump_article(output_file, article_obj):
+	def dump_article(self):
 
-	''' Dump article to output JSON file '''
+		''' Dump article to output JSON file '''
 
-	line = json.dumps(dict(article_obj), default=my_converter, ensure_ascii=False) + "\n"
+		line = json.dumps(dict(self.article_obj), default=self.my_converter, ensure_ascii=False) + "\n"
 
-	output_file.write(line)
+		self.output_file.write(line)
 
-	return article_obj
-
-
-# Execution
-
-for item in data:
-
-	article_obj = {}
-
-	article_obj['url'] = item['url']
-
-	article_obj = parse_article(article_obj)
-
-	article_obj = dump_article(output_file, article_obj)
-
-	pp.pprint(article_obj)
-
-
-# Close output file
-
-output_file.close()
-
-
-
-
-
-
-
-
-# article = Article(article_obj['url'])
-
-# class Article2(Article):
-
-# 	def __int__(self, url):
-		
-# Article2(url)
+		return self.article_obj
