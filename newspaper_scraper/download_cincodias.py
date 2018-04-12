@@ -8,8 +8,8 @@ from article_scraper import ArticleScraper
 
 # I/O files.
 
-input_file_path = '../scrapy_projects/expansion_hemeroteca/urls_expansion.json'
-output_file 	= codecs.open('articles_expansion_hemeroteca.json', 'w', encoding='utf-8')
+input_file_path = '../scrapy_projects/cincodias/urls_cincodias.json'
+output_file 	= codecs.open('articles_cincodias.json', 'w', encoding='utf-8')
 
 
 # Read data.
