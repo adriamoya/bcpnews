@@ -8,5 +8,5 @@
 from scrapy.item import Item, Field
 
 
-class ExpansionHemerotecaItem(Item):
+class CincodiasItem(Item):
 	article		= Field() # object dictionary
