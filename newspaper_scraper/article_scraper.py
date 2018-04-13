@@ -37,29 +37,33 @@ class ArticleScraper(Article):
 
 		''' Download, Parse and NLP a given article '''
 
-		# download source code
-		self.article.download()
+		try:
+			# download source code
+			self.article.download()
 
-		# parse code
-		self.article.parse()
+			# parse code
+			self.article.parse()
 
-		# populate article obj with parsed data
-		self.article_obj['title'] = self.article.title
-		self.article_obj['authors'] = self.article.authors
-		self.article_obj['publish_date'] = self.article.publish_date
-		self.article_obj['text'] = self.article.text
-		self.article_obj['top_image'] = self.article.top_image
+			# populate article obj with parsed data
+			self.article_obj['title'] = self.article.title
+			self.article_obj['authors'] = self.article.authors
+			self.article_obj['publish_date'] = self.article.publish_date
+			self.article_obj['text'] = self.article.text
+			self.article_obj['top_image'] = self.article.top_image
 
-		# article nlp
-		self.article.nlp()
+			# article nlp
+			self.article.nlp()
 
-		# populate article obj with nlp data
-		self.article_obj['summary'] = self.article.summary
-		self.article_obj['keywords'] = self.article.keywords
+			# populate article obj with nlp data
+			self.article_obj['summary'] = self.article.summary
+			self.article_obj['keywords'] = self.article.keywords
 
-		print(self.article_obj)
+			print(self.article_obj)
 
-		return self.dump_article()
+			return self.dump_article()
+		
+		except:
+			pass
 
 
 	def dump_article(self):

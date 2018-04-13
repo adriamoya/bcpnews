@@ -12,29 +12,23 @@ from scrapy.http.request import Request
 from elconfidencial.items import ElconfidencialItem
 
 
-general_url = 'http://www.elconfidencial.com/hemeroteca/'
+general_url = 'https://www.elconfidencial.com/hemeroteca/'
 
-start_urls_list = [general_url+'2018/04/06','/2']
-
-
-
-general_url = 'http://www.elconfidencial.com/hemeroteca/'
 start_date = datetime.datetime.strptime("2017-04-10", "%Y-%m-%d")
 end_date = datetime.datetime.strptime("2018-04-10", "%Y-%m-%d")
-date_generated = [start_date + datetime.timedelta(days=x) for x in range(0, (end_date-start_date).days, 7)]
+date_generated = [start_date + datetime.timedelta(days=x) for x in range(0, (end_date-start_date).days, 14)]
 
 start_urls_list = []
 
 for date in date_generated:  
-   start_urls_list.append( general_url+ date.strftime("%Y-%m-%d")+"/2/" )
-
+   start_urls_list.append( general_url+ date.strftime("%Y-%m-%d")+"/1/" )
 
 
 class ElconfidencialUrls(scrapy.Spider):
 
 	name = 'elconfidencial_urls'
 	allowed_domains = ['www.elconfidencial.com']
-	start_urls = ['https://www.elconfidencial.com/hemeroteca/2017-12-14/2/']
+	start_urls = start_urls_list
 	custom_settings = {
 		'ITEM_PIPELINES': {
 			'elconfidencial.pipelines.ItemsPipeline': 400
@@ -64,18 +58,20 @@ class ElconfidencialUrls(scrapy.Spider):
 				try:
 					raw_title = item.xpath("./@title").extract()[0]
 					if raw_title:
-						# print idx, raw_title.extract()[0]
 						article['title'] = raw_title
 				except:
 					raw_title = item.xpath("./text()").extract()[0]
 					if raw_title:
-						# print idx, raw_title.extract()[0]
 						article['title'] = raw_title
-
 
 				# url
 				raw_url = item.xpath("./@href").extract()[0]
 				if raw_url:
-					article['url'] = raw_url
+
+					# check if the url contains 'https:' or not
+					if 'http' not in raw_url:
+						article['url'] = 'https:' + raw_url
+					else:
+						article['url'] = raw_url
 
 				yield article
