@@ -13,7 +13,7 @@ M = imaplib.IMAP4_SSL('imap.gmail.com')
 output_file = codecs.open('emails.json', 'w', encoding='utf-8')
 
 # Retrieve credentials
-user = raw_input('User email: ')
+user = input('User email: ') # raw_input() in python 2
 passwd = getpass.getpass()
 
 # Login
