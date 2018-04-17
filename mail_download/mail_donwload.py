@@ -1,6 +1,7 @@
 import re
 import json
 import email
+import quopri
 import codecs
 import pprint
 import imaplib
@@ -13,7 +14,7 @@ M = imaplib.IMAP4_SSL('imap.gmail.com')
 output_file = codecs.open('emails.json', 'w', encoding='utf-8')
 
 # Retrieve credentials
-user = input('User email: ') # raw_input() in python 2
+user = input('User email: ') # raw_input() in python 2 / input() in python 3
 passwd = getpass.getpass()
 
 # Login
@@ -43,32 +44,47 @@ def parse_email(output_file, data):
 			email_obj['subject'] = msg['subject']
 			email_obj['date'] = msg['date']
 
-			if msg.is_multipart():
-				raw_body = msg.get_payload()[0].get_payload()
-			else:
-				raw_body = msg.get_payload()
-			# email_obj['body'] = raw_body
+			# # deprecated
+			# if msg.is_multipart():
+			# 	raw_body = msg.get_payload()[0].get_payload()
+			# else:
+			# 	raw_body = msg.get_payload()
 
+			# try:
+			# 	body = raw_body.replace("=\r\n", "")
+			# 	body = body.replace("\r", "")
+			# except:
+			# 	raw_body = raw_body[0].get_payload()
+			# 	body = raw_body.replace("=\r\n", "")
+			# 	body = body.replace("\r", "")			
+
+			# urls_raw = re.findall("(?P<url>https?://[^\s]+)", body)[:-1]
+
+			# # sanity
+			# urls = [url.split(">")[0] for url in urls_raw]
+
+			# if urls:
+			# 	email_obj['urls'] = urls
+				
 			# extracting links to articles
-			try:
-				body = raw_body.replace("=\r\n", "")
-				body = body.replace("\r", "")
-			except:
-				raw_body = raw_body[0].get_payload()
-				body = raw_body.replace("=\r\n", "")
-				body = body.replace("\r", "")			
+			raw_body = quopri.decodestring(response_part[1])
+			urls_raw = re.findall('<a href="(\S+)"', raw_body)[:-1]
 
-			urls_raw = re.findall("(?P<url>https?://[^\s]+)", body)[:-1]
-
-			# sanity
-			urls = [url.split(">")[0] for url in urls_raw]
-
-			if urls:
+			urls = []
+			if urls_raw:
+				for url in urls_raw:
+					if 'http' in url:
+						urls.append(url)
 				email_obj['urls'] = urls
 
-			pp.pprint(email_obj)
+				# only dump email_obj if there are urls
+				if len(urls) > 0:
+					pp.pprint(email_obj)
+					return dump_email(output_file, email_obj)
 
-			return dump_email(output_file, email_obj)
+			return email_obj
+
+
 
 
 def my_converter(o):
