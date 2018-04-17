@@ -56,7 +56,7 @@ def parse_email(output_file, data):
 			except:
 				raw_body = raw_body[0].get_payload()
 				body = raw_body.replace("=\r\n", "")
-				body = body.replace("\r", "")			
+				body = body.replace("\r", "")
 
 			urls_raw = re.findall("(?P<url>https?://[^\s]+)", body)[:-1]
 
