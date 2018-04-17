@@ -43,37 +43,16 @@ def parse_email(output_file, data):
 			email_obj['to'] = msg['to']
 			email_obj['subject'] = msg['subject']
 			email_obj['date'] = msg['date']
-
-			# # deprecated
-			# if msg.is_multipart():
-			# 	raw_body = msg.get_payload()[0].get_payload()
-			# else:
-			# 	raw_body = msg.get_payload()
-
-			# try:
-			# 	body = raw_body.replace("=\r\n", "")
-			# 	body = body.replace("\r", "")
-			# except:
-			# 	raw_body = raw_body[0].get_payload()
-			# 	body = raw_body.replace("=\r\n", "")
-			# 	body = body.replace("\r", "")			
-
-			# urls_raw = re.findall("(?P<url>https?://[^\s]+)", body)[:-1]
-
-			# # sanity
-			# urls = [url.split(">")[0] for url in urls_raw]
-
-			# if urls:
-			# 	email_obj['urls'] = urls
 				
 			# extracting links to articles
-			raw_body = quopri.decodestring(response_part[1])
-			urls_raw = re.findall('<a href="(\S+)"', raw_body)[:-1]
+			raw_body = quopri.decodestring(response_part[1]) # watch out enconding (.encode('ISO-8859-1'))
+			urls_raw = re.findall('<a href="(\S+)"', raw_body)[:-1] # watch out enconding (.encode('ISO-8859-1'))
 
 			urls = []
 			if urls_raw:
 				for url in urls_raw:
 					if 'http' in url:
+						url = fix_url(url)
 						urls.append(url)
 				email_obj['urls'] = urls
 
@@ -85,6 +64,19 @@ def parse_email(output_file, data):
 			return email_obj
 
 
+def fix_url(url):
+
+	''' Fix common issues observed in previous analyses (uncomplete urls, etc) '''
+
+	# fix urls ending in htm instead of html
+	if url.lower()[-3:] == "htm":
+		url = url + 'l'
+
+	# fix upper case html
+	if url[-4:] == "HTML":
+		url = url[:-4] + "html"
+
+	return url
 
 
 def my_converter(o):
