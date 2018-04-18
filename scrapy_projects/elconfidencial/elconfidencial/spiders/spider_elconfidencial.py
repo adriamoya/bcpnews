@@ -16,11 +16,11 @@ general_url = 'https://www.elconfidencial.com/hemeroteca/'
 
 start_date = datetime.datetime.strptime("2017-04-10", "%Y-%m-%d")
 end_date = datetime.datetime.strptime("2018-04-10", "%Y-%m-%d")
-date_generated = [start_date + datetime.timedelta(days=x) for x in range(0, (end_date-start_date).days, 14)]
+date_generated = [start_date + datetime.timedelta(days=x) for x in range(0, (end_date-start_date).days, 8)]
 
 start_urls_list = []
 
-for date in date_generated:  
+for date in date_generated:
    start_urls_list.append( general_url+ date.strftime("%Y-%m-%d")+"/1/" )
 
 
@@ -45,7 +45,7 @@ class ElconfidencialUrls(scrapy.Spider):
 			raw_articles = response.xpath("//article//a")
 
 			# for item in raw_articles:
-			for idx, item in enumerate(raw_articles): 
+			for idx, item in enumerate(raw_articles):
 
 				article = ElconfidencialItem()
 
