@@ -14,8 +14,8 @@ from elconfidencial.items import ElconfidencialItem
 
 general_url = 'https://www.elconfidencial.com/hemeroteca/'
 
-start_date = datetime.datetime.strptime("2017-04-10", "%Y-%m-%d")
-end_date = datetime.datetime.strptime("2018-04-10", "%Y-%m-%d")
+start_date = datetime.datetime.strptime("2016-04-01", "%Y-%m-%d")
+end_date = datetime.datetime.strptime("2018-04-01", "%Y-%m-%d")
 date_generated = [start_date + datetime.timedelta(days=x) for x in range(0, (end_date-start_date).days, 8)]
 
 start_urls_list = []
@@ -26,7 +26,7 @@ for date in date_generated:
 
 class ElconfidencialUrls(scrapy.Spider):
 
-	name = 'elconfidencial_urls'
+	name = 'elconfidencial'
 	allowed_domains = ['www.elconfidencial.com']
 	start_urls = start_urls_list
 	custom_settings = {
