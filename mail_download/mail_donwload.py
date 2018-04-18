@@ -76,6 +76,10 @@ def fix_url(url):
 	if url[-4:] == "HTML":
 		url = url[:-4] + "html"
 
+	# fix html extension typos
+	if url[-5:] == "htmlq":
+		url = url[:-1]
+
 	return url
 
 
