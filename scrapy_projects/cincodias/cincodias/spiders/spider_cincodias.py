@@ -15,9 +15,9 @@ from cincodias.items import CincodiasItem
 
 general_url = 'https://cincodias.elpais.com/tag/fecha/'
 
-start_date = datetime.datetime.strptime("2017/04/10", "%Y/%m/%d")
-end_date = datetime.datetime.strptime("2018/04/10", "%Y/%m/%d")
-date_generated = [start_date + datetime.timedelta(days=x) for x in range(0, (end_date-start_date).days, 14)]
+start_date = datetime.datetime.strptime("2016/04/01", "%Y/%m/%d")
+end_date = datetime.datetime.strptime("2018/04/01", "%Y/%m/%d")
+date_generated = [start_date + datetime.timedelta(days=x) for x in range(0, (end_date-start_date).days, 8)]
 
 start_urls_list = []
 
