@@ -2,7 +2,7 @@
 
 ```shell
 
-scrapy crawl expansion_hemeroteca
+scrapy crawl expansion_urls
 scrapy crawl cincodias
 scrapy crawl elconfidencial
 
