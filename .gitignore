@@ -1,4 +1,5 @@
 *.pyc
+*.csv
 *.json
 .ipynb_checkpoints
 __pycache__
