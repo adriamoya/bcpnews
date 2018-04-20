@@ -6,8 +6,8 @@
 # Data fields
 
 * __authors__: author(s) of the article (array)
-* __date__:
-* __day_of_week__: day of the week (string)
+* __date__: date of article publication (datetime)
+* __day_of_week__: day of the week of article publication (string)
 * __domain__: newspaper website domain
 * __flag__: target variable (`0`: not included in BBB newsletter, `1`: included)
 * __keywords__: list of keywords suggested by nlp application (array)
