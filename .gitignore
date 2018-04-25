@@ -3,5 +3,6 @@
 *.json
 .ipynb_checkpoints
 __pycache__
+old
 .DS_Store
 prueba306.txt
