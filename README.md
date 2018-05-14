@@ -1,4 +1,4 @@
-# Classifying news articles to build a customized newsletter automatically
+# Classifying news articles to build a tailored newsletter
 
 Real case application for a financial consulting firm.
 
