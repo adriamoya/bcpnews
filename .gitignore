@@ -1,6 +1,7 @@
 *.pyc
 *.csv
 *.json
+*.log
 .ipynb_checkpoints
 __pycache__
 old
