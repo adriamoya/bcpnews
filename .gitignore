@@ -7,3 +7,6 @@ __pycache__
 old
 .DS_Store
 prueba306.txt
+.bin
+.include
+.lib
