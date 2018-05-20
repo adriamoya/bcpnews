@@ -23,7 +23,7 @@ class CincodiasSpider(scrapy.Spider):
 		:param crawl_date: crawling datetime
 		"""
 
-		print("\nInitializing Expansion spider ...\n", "-"*80)
+		print("\nInitializing Cincodias spider ...\n", "-"*80)
 
 		try:
 			if isinstance(crawl_date, datetime.datetime): # check if argument is datetime.datetime
