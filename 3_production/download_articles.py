@@ -44,7 +44,7 @@ logger.info("Initializing download ...")
 
 def process_newspaper(newspp, output_file, logger):
 
-	input_file_path = "./urls_%s.json" % newspp
+	input_file_path = "./output/urls_%s.json" % newspp
 
 	# Read data.
 

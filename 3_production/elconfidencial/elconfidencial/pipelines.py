@@ -11,7 +11,7 @@ import codecs
 class ItemsPipeline(object):
 
     def __init__(self):
-        self.file = codecs.open('urls_elconfidencial.json', 'w', encoding='utf-8')
+        self.file = codecs.open('./output/urls_elconfidencial.json', 'w', encoding='utf-8')
 
     def process_item(self, item, spider):
         line = json.dumps(dict(item), ensure_ascii=False) + "\n"

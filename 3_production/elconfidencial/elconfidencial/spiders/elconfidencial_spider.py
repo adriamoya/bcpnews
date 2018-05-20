@@ -23,16 +23,16 @@ class ElconfidencialSpider(scrapy.Spider):
 		:param crawl_date: crawling datetime
 		"""
 
-		print "\n", "Initializing ElConfidencial spider ...\n", "-"*80
+		print("\nInitializing ElConfidencial spider ...\n", "-"*80)
 
 		try:
 			if isinstance(crawl_date, datetime.datetime): # check if argument is datetime.datetime
 				self.crawl_date = crawl_date
 				self.start_urls = [BASE_URL + self.crawl_date.strftime("%Y-%m-%d") + "/1/"]
-				print "\n", "Crawl date selected is:", self.crawl_date.strftime("%Y-%m-%d"), "\n"
+				print("\nCrawl date selected is:", self.crawl_date.strftime("%Y-%m-%d"), "\n")
 
 		except TypeError:
-			print "\n", "Argument type not valid."
+			print("\nArgument type not valid.")
 			pass
 
 	name = 'elconfidencial'
