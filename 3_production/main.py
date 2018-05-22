@@ -94,7 +94,7 @@ process.start() # the script will block here until all crawling jobs are finishe
 
 
 # ------------------------------------ #
-#  Download                            #
+#  Download articles                   #
 # ------------------------------------ #
 
 from utils.article_scraper import ArticleScraper
@@ -110,7 +110,6 @@ def process_newspaper(newspp, output_file, logger):
 	input_file_path = "./output/urls_%s.json" % newspp
 
 	# Read data.
-
 	data = []
 	with open(input_file_path) as input_file:
 
@@ -119,7 +118,6 @@ def process_newspaper(newspp, output_file, logger):
 
 
 	# Download, parse and store articles.
-
 	logger.info('(%s) %s urls' % (str(len(data)), newspp))
 
 	for article in data:
@@ -132,5 +130,4 @@ process_newspaper('elconfidencial', output_file, logger)
 process_newspaper('eleconomista', output_file, logger)
 
 # Close output file.
-
 output_file.close()
