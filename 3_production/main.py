@@ -13,6 +13,7 @@ from scrapy.crawler import CrawlerProcess
 from expansion.expansion.spiders.expansion_spider import ExpansionSpider
 from cincodias.cincodias.spiders.cincodias_spider import CincodiasSpider
 from elconfidencial.elconfidencial.spiders.elconfidencial_spider import ElconfidencialSpider
+from eleconomista.eleconomista.spiders.eleconomista_spider import EleconomistaSpider
 
 # ------------------------------------ #
 #  Run spiders                         #
@@ -65,6 +66,7 @@ process = CrawlerProcess()
 process.crawl(ExpansionSpider, crawl_date=crawl_date)
 process.crawl(CincodiasSpider, crawl_date=crawl_date)
 process.crawl(ElconfidencialSpider, crawl_date=crawl_date)
+process.crawl(EleconomistaSpider, crawl_date=crawl_date)
 
 process.start() # the script will block here until all crawling jobs are finished
 
@@ -127,6 +129,7 @@ def process_newspaper(newspp, output_file, logger):
 process_newspaper('expansion', output_file, logger)
 process_newspaper('cincodias', output_file, logger)
 process_newspaper('elconfidencial', output_file, logger)
+process_newspaper('eleconomista', output_file, logger)
 
 # Close output file.
 
