@@ -40,12 +40,17 @@ class CincodiasSpider(scrapy.Spider):
 			print("\nArgument type not valid.")
 			pass
 
+
+	# start_urls_list = []
+	# for i in range(1,4):
+	# 	start_urls_list.append( BASE_URL + datetime.datetime.today().strftime("%Y%m%d") + "/" + str(i) )
+	# start_urls = start_urls_list
+
 	name = 'cincodias'
 	allowed_domains = ['cincodias.elpais.com']
-	# start_urls = start_urls_list
 	custom_settings = {
 		'ITEM_PIPELINES': {
-			'cincodias.cincodias.pipelines.ItemsPipeline': 400
+			'cincodias.cincodias.pipelines.ItemsPipeline': 400 # 'cincodias.cincodias.pipelines.ItemsPipeline': 400
 		}
 	}
 

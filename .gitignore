@@ -1,12 +1,19 @@
+# files
 *.pyc
 *.csv
 *.json
 *.log
-.ipynb_checkpoints
+test.py
+test2.py
+test3.py
+
+# macOS
 __pycache__
-old
 .DS_Store
 prueba306.txt
+
+# folders
+old
 .bin
 .include
 .lib
@@ -14,6 +21,8 @@ prueba306.txt
 .pynb
 .submissions
 .input
-test.py
-test2.py
-test3.py
+.ipynb_checkpoints
+share/
+bin/
+include/
+lib/
