@@ -3,6 +3,7 @@
 *.csv
 *.json
 *.log
+*.0
 test.py
 test2.py
 test3.py
@@ -10,19 +11,13 @@ test3.py
 # macOS
 __pycache__
 .DS_Store
-prueba306.txt
 
 # folders
-old
-.bin
-.include
-.lib
-.glove
-.pynb
-.submissions
-.input
-.ipynb_checkpoints
+old/
 share/
 bin/
 include/
 lib/
+pynb/
+submissions/
+.ipynb_checkpoints/
