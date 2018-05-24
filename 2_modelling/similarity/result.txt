@@ -1,0 +1,173 @@
+
+Testing similarities with 20180523 articles ...
+
+Initializing similarities ...
+--------------------------------------------------------------------------------
+Number of articles: 387
+
+Building tf-idf model ...
+--------------------------------------------------------------------------------
+Word tokenization ...
+Creating dictionary ...
+Number of words in dictionary: 21,658
+Creating bag-of-words corpus ...
+Building tf-idf model from corpus ...
+TfidfModel(num_docs=387, num_nnz=88897)
+Creating similarity measures and storing ...
+Similarity index with 387 documents in 0 shards (stored under ./sims)
+<class 'gensim.similarities.docsim.Similarity'>
+Done.
+
+Building similarity matrix ...
+--------------------------------------------------------------------------------
+Done.
+
+Looking for similar items ...
+--------------------------------------------------------------------------------
+Similar articles:
+[   [(28, 148), 0.5070531],
+    [(38, 360), 0.51845175],
+    [(54, 196), 0.62016755],
+    [(78, 194), 0.6409205],
+    [(97, 186), 0.6958161],
+    [(114, 175), 0.9465046],
+    [(125, 177), 0.7299376],
+    [(128, 169), 0.548529],
+    [(130, 171), 0.669374],
+    [(140, 360), 0.53334206],
+    [(148, 28), 0.5070531],
+    [(169, 128), 0.548529],
+    [(171, 130), 0.669374],
+    [(175, 114), 0.9465046],
+    [(177, 125), 0.7299376],
+    [(186, 97), 0.6958161],
+    [(194, 78), 0.6409205],
+    [(196, 54), 0.62016755],
+    [(204, 207), 0.52736354],
+    [(207, 204), 0.52736354],
+    [(277, 278), 0.9999999],
+    [(278, 277), 0.9999999],
+    [(360, 38), 0.51845175],
+    [(360, 140), 0.53334206]]
+
+Checking similar articles ...
+
+(28)	 La tailandesa Minor entra en NH tras comprar a Oceanwood un 8,6%
+http://www.expansion.com/empresas/transporte/2018/05/23/5b050926268e3ec5468b4686.html
+(148)	 Minor compra a Oceanwood el 8,6% de NH y se convierte en tercer accionista
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527065937_640755.html
+
+(38)	 Los gestores estrella de Metagestión se incorporan a Horos como socios mayoritarios
+http://www.expansion.com/mercados/fondos/2018/05/23/5b052746268e3ecc6a8b456b.html
+(360)	 Metagestión se queda sin sus tres gestores estrella, que fichan por Horos AM
+http://www.eleconomista.es/mercados-cotizaciones/noticias/9155751/05/18/Metagestion-se-queda-sin-sus-tres-gestores-estrella-Javier-Ruiz-Alejandro-Martin-y-Miguel-Rodriguez.html
+
+(54)	 Más del 50% de los valores tienen un problema de falta de cobertura de analistas en España
+http://www.expansion.com/mercados/2018/05/23/5b053f66468aeb9c268b467e.html
+(196)	 BME y el IEAF lanzan un servicio de análisis gratuito para valores sin cobertura
+https://cincodias.elpais.com/cincodias/2018/05/23/mercados/1527076822_722224.html
+
+(78)	 Dimas Gimeno planea segregar la sociedad patrimonial IASA
+http://www.expansion.com/empresas/distribucion/2018/05/23/5b0566a4268e3e30548b458a.html
+(194)	 Dimas Gimeno planea la segregación de IASA, la instrumental que controla el 22,1% de El Corte Inglés
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527081610_207726.html
+
+(97)	 Uber asegura a sus 150.000 conductores y repartidores en Europa
+http://www.expansion.com/economia-digital/companias/2018/05/23/5b057f6e22601d0a788b4614.html
+(186)	 Uber asegura a sus 150.000 conductores y repartidores de Europa
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527089118_984964.html
+
+(114)	 Acciona logra el visto bueno de Competencia para cerrar la venta de Trasmediterránea
+http://www.expansion.com/empresas/transporte/2018/05/23/5b05992dca4741ec648b45bc.html
+(175)	 La CNMC autoriza la venta de Trasmediterránea en 260 millones de euros
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527095612_168985.html
+
+(125)	 BBVA dice que cumple con los requisitos del nuevo colchón anticrisis
+http://www.expansion.com/empresas/banca/2018/05/23/5b05a5bb46163f4a398b4619.html
+(177)	 BBVA y Sabadell aseguran que cumplen con las nuevas exigencias del colchón anticrisis
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527093859_212550.html
+
+(128)	 Iberdrola se adjudica un megaproyecto de eólica marina de 2.400 millones de euros en EEUU
+http://www.expansion.com/empresas/energia/2018/05/23/5b05ae36e2704eb13e8b45cc.html
+(169)	 Iberdrola invertirá 2.400 millones en eólica marina en Estados Unidos
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527097562_074920.html
+
+(130)	 España abona otros 3.000 millones del rescate bancario
+http://www.expansion.com/economia/2018/05/23/5b05af8746163f3e4a8b45f4.html
+(171)	 España devuelve 3.000 millones del rescate europeo
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527099014_599950.html
+
+(140)	 Los gestores estrella de Metagestión salen de la firma y se mudan a Horos AM
+https://cincodias.elpais.com/cincodias/2018/05/23/mercados/1527069629_250052.html
+(360)	 Metagestión se queda sin sus tres gestores estrella, que fichan por Horos AM
+http://www.eleconomista.es/mercados-cotizaciones/noticias/9155751/05/18/Metagestion-se-queda-sin-sus-tres-gestores-estrella-Javier-Ruiz-Alejandro-Martin-y-Miguel-Rodriguez.html
+
+(148)	 Minor compra a Oceanwood el 8,6% de NH y se convierte en tercer accionista
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527065937_640755.html
+(28)	 La tailandesa Minor entra en NH tras comprar a Oceanwood un 8,6%
+http://www.expansion.com/empresas/transporte/2018/05/23/5b050926268e3ec5468b4686.html
+
+(169)	 Iberdrola invertirá 2.400 millones en eólica marina en Estados Unidos
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527097562_074920.html
+(128)	 Iberdrola se adjudica un megaproyecto de eólica marina de 2.400 millones de euros en EEUU
+http://www.expansion.com/empresas/energia/2018/05/23/5b05ae36e2704eb13e8b45cc.html
+
+(171)	 España devuelve 3.000 millones del rescate europeo
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527099014_599950.html
+(130)	 España abona otros 3.000 millones del rescate bancario
+http://www.expansion.com/economia/2018/05/23/5b05af8746163f3e4a8b45f4.html
+
+(175)	 La CNMC autoriza la venta de Trasmediterránea en 260 millones de euros
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527095612_168985.html
+(114)	 Acciona logra el visto bueno de Competencia para cerrar la venta de Trasmediterránea
+http://www.expansion.com/empresas/transporte/2018/05/23/5b05992dca4741ec648b45bc.html
+
+(177)	 BBVA y Sabadell aseguran que cumplen con las nuevas exigencias del colchón anticrisis
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527093859_212550.html
+(125)	 BBVA dice que cumple con los requisitos del nuevo colchón anticrisis
+http://www.expansion.com/empresas/banca/2018/05/23/5b05a5bb46163f4a398b4619.html
+
+(186)	 Uber asegura a sus 150.000 conductores y repartidores de Europa
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527089118_984964.html
+(97)	 Uber asegura a sus 150.000 conductores y repartidores en Europa
+http://www.expansion.com/economia-digital/companias/2018/05/23/5b057f6e22601d0a788b4614.html
+
+(194)	 Dimas Gimeno planea la segregación de IASA, la instrumental que controla el 22,1% de El Corte Inglés
+https://cincodias.elpais.com/cincodias/2018/05/23/companias/1527081610_207726.html
+(78)	 Dimas Gimeno planea segregar la sociedad patrimonial IASA
+http://www.expansion.com/empresas/distribucion/2018/05/23/5b0566a4268e3e30548b458a.html
+
+(196)	 BME y el IEAF lanzan un servicio de análisis gratuito para valores sin cobertura
+https://cincodias.elpais.com/cincodias/2018/05/23/mercados/1527076822_722224.html
+(54)	 Más del 50% de los valores tienen un problema de falta de cobertura de analistas en España
+http://www.expansion.com/mercados/2018/05/23/5b053f66468aeb9c268b467e.html
+
+(204)	 Corrupción: Los Cotino pegaron un pelotazo de casi 40 millones con el Plan Eólico de Zaplana
+https://www.elconfidencial.com/espana/comunidad-valenciana/2018-05-23/cotino-zaplana-plan-eolico-pelotazo-comisiones_1567536/
+(207)	 Noticias de Comunidad Valenciana: De la peña El Picarol al sector cristiano: quién es quién en el caso Zaplana
+https://www.elconfidencial.com/espana/comunidad-valenciana/2018-05-23/pena-el-picarol-opus-dei-operacion-erial-zaplana_1567682/
+
+(207)	 Noticias de Comunidad Valenciana: De la peña El Picarol al sector cristiano: quién es quién en el caso Zaplana
+https://www.elconfidencial.com/espana/comunidad-valenciana/2018-05-23/pena-el-picarol-opus-dei-operacion-erial-zaplana_1567682/
+(204)	 Corrupción: Los Cotino pegaron un pelotazo de casi 40 millones con el Plan Eólico de Zaplana
+https://www.elconfidencial.com/espana/comunidad-valenciana/2018-05-23/cotino-zaplana-plan-eolico-pelotazo-comisiones_1567536/
+
+(277)	 Tráfico: ¿Se puede pasar la ITV en otra ciudad?
+https://blogs.elconfidencial.com/motor/consultorio-sobre-ruedas/2018-05-23/pasar-itv-en-otra-ciudad_1566940/
+(278)	 Tráfico: ¿Se puede pasar la ITV en otra ciudad?
+https://blogs.elconfidencial.com/motor/consultorio-sobre-ruedas/2018-05-23/pasar-itv-en-otra-ciudad_1566940/#consulting
+
+(278)	 Tráfico: ¿Se puede pasar la ITV en otra ciudad?
+https://blogs.elconfidencial.com/motor/consultorio-sobre-ruedas/2018-05-23/pasar-itv-en-otra-ciudad_1566940/#consulting
+(277)	 Tráfico: ¿Se puede pasar la ITV en otra ciudad?
+https://blogs.elconfidencial.com/motor/consultorio-sobre-ruedas/2018-05-23/pasar-itv-en-otra-ciudad_1566940/
+
+(360)	 Metagestión se queda sin sus tres gestores estrella, que fichan por Horos AM
+http://www.eleconomista.es/mercados-cotizaciones/noticias/9155751/05/18/Metagestion-se-queda-sin-sus-tres-gestores-estrella-Javier-Ruiz-Alejandro-Martin-y-Miguel-Rodriguez.html
+(38)	 Los gestores estrella de Metagestión se incorporan a Horos como socios mayoritarios
+http://www.expansion.com/mercados/fondos/2018/05/23/5b052746268e3ecc6a8b456b.html
+
+(360)	 Metagestión se queda sin sus tres gestores estrella, que fichan por Horos AM
+http://www.eleconomista.es/mercados-cotizaciones/noticias/9155751/05/18/Metagestion-se-queda-sin-sus-tres-gestores-estrella-Javier-Ruiz-Alejandro-Martin-y-Miguel-Rodriguez.html
+(140)	 Los gestores estrella de Metagestión salen de la firma y se mudan a Horos AM
+https://cincodias.elpais.com/cincodias/2018/05/23/mercados/1527069629_250052.html
