@@ -26,7 +26,7 @@ class ArticleScraper(Article):
 		self.article_obj['url'] = url
 
 		if self.article_obj:
-			self.article = Article(url)
+			self.article = Article(url, language='es')
 			self.parse_article()
 
 

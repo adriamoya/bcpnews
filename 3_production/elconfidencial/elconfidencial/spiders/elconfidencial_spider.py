@@ -28,7 +28,7 @@ class ElconfidencialSpider(scrapy.Spider):
 		try:
 			if isinstance(crawl_date, datetime.datetime): # check if argument is datetime.datetime
 				self.crawl_date = crawl_date
-				self.start_urls = [BASE_URL + self.crawl_date.strftime("%Y-%m-%d") + "/1"]
+				self.start_urls = [BASE_URL + self.crawl_date.strftime("%Y-%m-%d") + "/2"]
 				print("\nCrawl date selected is:", self.crawl_date.strftime("%Y-%m-%d"), "\n")
 
 		except TypeError:

@@ -1,0 +1,4 @@
+art=Article('http://www.eleconomista.es/mercados-cotizaciones/noticias/9177107/05/18/La-America-que-no-exporta-es-la-unica-que-cotiza-en-maximos-historicos.html')
+
+
+art=Article('https://cincodias.elpais.com/cincodias/2018/05/31/mercados/1527774879_490198.html')
