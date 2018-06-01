@@ -16,6 +16,7 @@ from elconfidencial.elconfidencial.spiders.elconfidencial_spider import Elconfid
 from eleconomista.eleconomista.spiders.eleconomista_spider import EleconomistaSpider
 
 from utils.aux_functions import pause_execution
+from utils.check_output import check_output
 
 # ------------------------------------ #
 #  Run spiders                         #
@@ -95,7 +96,8 @@ pause_execution()
 from utils.article_scraper import ArticleScraper
 
 # Output file
-output_file = codecs.open('./output/%s_articles.json' % crawl_date.strftime("%Y%m%d"), 'w', encoding='utf-8')
+output_file_name = './output/%s_articles.json' % crawl_date.strftime("%Y%m%d")
+output_file = codecs.open(output_file_name, 'w', encoding='utf-8')
 
 logger.info("")
 logger.info("Initializing download ...")
@@ -126,3 +128,5 @@ process_newspaper('eleconomista', output_file, logger)
 
 # Close output file.
 output_file.close()
+
+check_output(output_file_name)
