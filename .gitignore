@@ -8,6 +8,7 @@ test.py
 test2.py
 test3.py
 .Python
+tree.txt
 
 # macOS
 __pycache__
