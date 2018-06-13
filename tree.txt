@@ -1,0 +1,39 @@
+.
+├── 1_construction
+│   ├── 1_mail_download
+│   ├── 2_scrapy_projects
+│   │   ├── cincodias
+│   │   │   └── cincodias
+│   │   │       └── spiders
+│   │   ├── elconfidencial
+│   │   │   └── elconfidencial
+│   │   │       └── spiders
+│   │   └── expansion_hemeroteca
+│   │       └── expansion_hemeroteca
+│   │           └── spiders
+│   └── 3_newspaper_scraper
+│       └── analyses
+│           └── cleaned_datasets
+├── 2_modelling
+│   ├── classification
+│   │   └── models
+│   ├── data
+│   ├── similarity
+│   └── submissions
+└── 3_production
+    ├── cincodias
+    │   └── cincodias
+    │       └── spiders
+    ├── elconfidencial
+    │   └── elconfidencial
+    │       └── spiders
+    ├── eleconomista
+    │   └── eleconomista
+    │       └── spiders
+    ├── expansion
+    │   └── expansion
+    │       └── spiders
+    ├── output
+    └── utils
+
+36 directories
