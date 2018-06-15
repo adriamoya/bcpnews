@@ -15,4 +15,5 @@ print("\nTesting similarities with 20180523 articles ...")
 
 sim = Similarities(df)
 sim.build_similarity_matrix()
-sim.find_similar_articles()
+# sim.find_similar_articles()
+sim.return_similar_articles(threshold=0.5, verbose=True)
