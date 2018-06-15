@@ -9,6 +9,8 @@ test2.py
 test3.py
 .Python
 tree.txt
+*.h5
+*.dat
 
 # macOS
 __pycache__
