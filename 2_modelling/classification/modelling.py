@@ -491,10 +491,10 @@ random_search = pickle.load(open('models/xgboost_level_2.dat', "rb"))
 
 pred_train = random_search.predict_proba(train_level_2)[:, 1]
 cv_train_auc = roc_auc_score(y_train, pred_train)
-print('CV train with XGBoost AUC: [%.4f]' % format(cv_train_auc))
+print('CV train with XGBoost AUC: [%.4f]' % cv_train_auc)
 
 pred_valid = random_search.predict_proba(valid_level_2)[:, 1]
 cv_valid_auc = roc_auc_score(y_valid, pred_valid)
-print('CV valid with XGBoost AUC: [%.4f]' % format(cv_valid_auc))
+print('CV valid with XGBoost AUC: [%.4f]' % cv_valid_auc)
 
 # pred_test = random_search.predict_proba(test_level_2)[:, 1]
