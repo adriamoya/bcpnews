@@ -8,13 +8,13 @@ import datetime
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http.request import Request
 
-from ..items import EleconomistaItem
+from ..items import ElconfidencialItem
 
 
-BASE_URL = 'https://www.eleconomista.es/'
-section_list = ['mercados-cotizaciones', 'economia', 'empresas-finanzas', 'tecnologia']
+BASE_URL = 'https://www.elconfidencial.com/hemeroteca/'
 
-class EleconomistaSpider(scrapy.Spider):
+
+class ElconfidencialSpider(scrapy.Spider):
 
 	def __init__(self, crawl_date):
 		"""
@@ -23,26 +23,26 @@ class EleconomistaSpider(scrapy.Spider):
 		:param crawl_date: crawling datetime
 		"""
 
-		print("\nInitializing Eleconomista spider ...\n", "-"*80)
-
 		try:
 			if isinstance(crawl_date, datetime.datetime): # check if argument is datetime.datetime
 				self.crawl_date = crawl_date
+				dates = [self.crawl_date - datetime.timedelta(days=3), self.crawl_date - datetime.timedelta(days=2), self.crawl_date - datetime.timedelta(days=1), self.crawl_date]
+				
 				start_urls_list = []
-				for section in section_list:
-					start_urls_list.append(BASE_URL + section + "/")
+				for date in dates:
+					start_urls_list.append(BASE_URL + date.strftime("%Y-%m-%d") + "/1")
+					print("\nCrawl date selected is:", date.strftime("%Y-%m-%d"), "\n")
 				self.start_urls = start_urls_list
-				print("\nCrawl date selected is:", self.crawl_date.strftime("%Y-%m-%d"), "\n")
-
 		except TypeError:
 			print("\nArgument type not valid.")
 			pass
 
-	name = 'eleconomista'
-	allowed_domains = ['www.eleconomista.es']
+	name = 'elconfidencial'
+	allowed_domains = ['www.elconfidencial.com']
+	# start_urls = start_urls_list
 	custom_settings = {
 		'ITEM_PIPELINES': {
-			'eleconomista.eleconomista.pipelines.ItemsPipeline': 400
+			'spiders.elconfidencial.elconfidencial.pipelines.ItemsPipeline': 400
 		}
 	}
 
@@ -53,16 +53,17 @@ class EleconomistaSpider(scrapy.Spider):
 
 		if response.status == 200:
 
-			raw_articles = response.xpath("//div[contains(@class,'cols')]//h1[@itemprop='headline']/a")
+			raw_articles = response.xpath("//article//a")
 
 			# for item in raw_articles:
 			for idx, item in enumerate(raw_articles):
 
-				article = EleconomistaItem()
+				article = ElconfidencialItem()
 
 				article = {
 					"title": "",
-					"url": ""
+					"url": "",
+					"newspaper": "elconfidencial"
 				}
 
 				# title
@@ -84,7 +85,5 @@ class EleconomistaSpider(scrapy.Spider):
 						article['url'] = 'https:' + raw_url
 					else:
 						article['url'] = raw_url
-
-					article['url'] = article['url'].replace("https", "http")
 
 				yield article

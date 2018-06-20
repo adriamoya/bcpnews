@@ -8,13 +8,13 @@ import datetime
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http.request import Request
 
-from ..items import ElconfidencialItem
+from ..items import EleconomistaItem
 
 
-BASE_URL = 'https://www.elconfidencial.com/hemeroteca/'
+BASE_URL = 'https://www.eleconomista.es/'
+section_list = ['mercados-cotizaciones', 'economia', 'empresas-finanzas', 'tecnologia']
 
-
-class ElconfidencialSpider(scrapy.Spider):
+class EleconomistaSpider(scrapy.Spider):
 
 	def __init__(self, crawl_date):
 		"""
@@ -23,24 +23,24 @@ class ElconfidencialSpider(scrapy.Spider):
 		:param crawl_date: crawling datetime
 		"""
 
-		print("\nInitializing ElConfidencial spider ...\n", "-"*80)
-
 		try:
 			if isinstance(crawl_date, datetime.datetime): # check if argument is datetime.datetime
 				self.crawl_date = crawl_date
-				self.start_urls = [BASE_URL + self.crawl_date.strftime("%Y-%m-%d") + "/2"]
+				start_urls_list = []
+				for section in section_list:
+					start_urls_list.append(BASE_URL + section + "/")
+				self.start_urls = start_urls_list
 				print("\nCrawl date selected is:", self.crawl_date.strftime("%Y-%m-%d"), "\n")
 
 		except TypeError:
 			print("\nArgument type not valid.")
 			pass
 
-	name = 'elconfidencial'
-	allowed_domains = ['www.elconfidencial.com']
-	# start_urls = start_urls_list
+	name = 'eleconomista'
+	allowed_domains = ['www.eleconomista.es']
 	custom_settings = {
 		'ITEM_PIPELINES': {
-			'elconfidencial.elconfidencial.pipelines.ItemsPipeline': 400
+			'spiders.eleconomista.eleconomista.pipelines.ItemsPipeline': 400
 		}
 	}
 
@@ -51,16 +51,17 @@ class ElconfidencialSpider(scrapy.Spider):
 
 		if response.status == 200:
 
-			raw_articles = response.xpath("//article//a")
+			raw_articles = response.xpath("//div[contains(@class,'cols')]//h1[@itemprop='headline']/a")
 
 			# for item in raw_articles:
 			for idx, item in enumerate(raw_articles):
 
-				article = ElconfidencialItem()
+				article = EleconomistaItem()
 
 				article = {
 					"title": "",
-					"url": ""
+					"url": "",
+					"newspaper": "eleconomista"
 				}
 
 				# title
@@ -82,5 +83,7 @@ class ElconfidencialSpider(scrapy.Spider):
 						article['url'] = 'https:' + raw_url
 					else:
 						article['url'] = raw_url
+
+					article['url'] = article['url'].replace("https", "http")
 
 				yield article

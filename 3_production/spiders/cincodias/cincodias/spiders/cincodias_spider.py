@@ -23,34 +23,32 @@ class CincodiasSpider(scrapy.Spider):
 		:param crawl_date: crawling datetime
 		"""
 
-		print("\nInitializing Cincodias spider ...\n", "-"*80)
-
 		try:
 			if isinstance(crawl_date, datetime.datetime): # check if argument is datetime.datetime
+
 				self.crawl_date = crawl_date
 
-				start_urls_list = []
-				for i in range(1,4):
-					start_urls_list.append( BASE_URL + self.crawl_date.strftime("%Y%m%d") + "/" + str(i) )
+				dates = [self.crawl_date - datetime.timedelta(days=3), self.crawl_date - datetime.timedelta(days=2), self.crawl_date - datetime.timedelta(days=1), self.crawl_date]
 
-				self.start_urls = start_urls_list
-				print("\nCrawl date selected is:", self.crawl_date.strftime("%Y-%m-%d"), "\n")
+				start_urls_list = []
+
+				for date in dates:
+					for i in range(1,4):
+						start_urls_list.append( BASE_URL + date.strftime("%Y%m%d") + "/" + str(i) )
+
+					self.start_urls = start_urls_list
+					print("\nCrawl date selected is:", date.strftime("%Y-%m-%d"), "\n")
 
 		except TypeError:
 			print("\nArgument type not valid.")
 			pass
 
-
-	# start_urls_list = []
-	# for i in range(1,4):
-	# 	start_urls_list.append( BASE_URL + datetime.datetime.today().strftime("%Y%m%d") + "/" + str(i) )
-	# start_urls = start_urls_list
-
 	name = 'cincodias'
 	allowed_domains = ['cincodias.elpais.com']
+	# start_urls = start_urls_list
 	custom_settings = {
 		'ITEM_PIPELINES': {
-			'cincodias.cincodias.pipelines.ItemsPipeline': 400 # 'cincodias.cincodias.pipelines.ItemsPipeline': 400
+			'spiders.cincodias.cincodias.pipelines.ItemsPipeline': 400
 		}
 	}
 
@@ -70,7 +68,8 @@ class CincodiasSpider(scrapy.Spider):
 
 				article = {
 					"title": "",
-					"url": ""
+					"url": "",
+					"newspaper": "cincodias"
 				}
 
 				# title

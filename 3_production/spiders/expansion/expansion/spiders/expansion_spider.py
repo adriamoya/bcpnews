@@ -23,14 +23,19 @@ class ExpansionSpider(scrapy.Spider):
 		:param crawl_date: crawling datetime
 		"""
 
-		print("\nInitializing Expansion spider ...\n", "-"*80)
-
 		try:
 			if isinstance(crawl_date, datetime.datetime): # check if argument is datetime.datetime
 				self.crawl_date = crawl_date
-				self.start_urls = [BASE_URL + self.crawl_date.strftime("%Y/%m/%d") + "/"]
-				print("\nCrawl date selected is:", self.crawl_date.strftime("%Y-%m-%d"), "\n")
 
+				dates = [self.crawl_date - datetime.timedelta(days=3), self.crawl_date - datetime.timedelta(days=2), self.crawl_date - datetime.timedelta(days=1), self.crawl_date]
+				
+				sections = ['apertura', 'media', 'cierre', 'noche']
+				start_urls_list = []
+				for date in dates:
+					for section in sections:
+						start_urls_list.append(BASE_URL + date.strftime("%Y/%m/%d") + "/" + section + ".html")
+						print("\nCrawl date selected is:", date.strftime("%Y-%m-%d"), "\n")
+				self.start_urls = start_urls_list
 		except TypeError:
 			print("\nArgument type not valid.")
 			pass
@@ -40,7 +45,7 @@ class ExpansionSpider(scrapy.Spider):
 	# start_urls = start_urls_list
 	custom_settings = {
 		'ITEM_PIPELINES': {
-			'expansion.expansion.pipelines.ItemsPipeline': 400
+			'spiders.expansion.expansion.pipelines.ItemsPipeline': 400
 		}
 	}
 
@@ -51,7 +56,7 @@ class ExpansionSpider(scrapy.Spider):
 
 		if response.status == 200:
 
-			raw_articles = response.xpath("//div[@id='destino']//article[@class='noticia']")
+			raw_articles = response.xpath("//div[@id='contenido']//article[contains(@class,'noticia')]")
 
 			# for item in raw_articles:
 			for idx, item in enumerate(raw_articles):
@@ -60,17 +65,18 @@ class ExpansionSpider(scrapy.Spider):
 
 				article = {
 					"title": "",
-					"url": ""
+					"url": "",
+					"newspaper": "expansion"
 				}
 
 				# title
-				raw_title = item.xpath(".//h1/a/text()").extract()[0]
+				raw_title = item.xpath(".//h1//a/text()").extract()[0]
 				if raw_title:
 					# print idx, raw_title.extract()[0]
 					article['title'] = raw_title
 
 				# url
-				raw_url = item.xpath(".//h1/a/@href").extract()[0]
+				raw_url = item.xpath(".//h1//a/@href").extract()[0]
 				if raw_url:
 					article['url'] = raw_url
 
