@@ -22,6 +22,7 @@ share/
 bin/
 include/
 lib/
+env/
 pynb/
 submissions/
 .ipynb_checkpoints/

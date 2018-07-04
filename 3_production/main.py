@@ -64,29 +64,6 @@ process.crawl(EleconomistaSpider, crawl_date=crawl_date)
 
 process.start() # the script will block here until all crawling jobs are finished
 
-
-# Ouput check results
-#
-# def read_urls(news_paper):
-#
-#     input_file_path = './output/urls_%s.json' % news_paper.lower()
-#
-#     # read data
-#     data = []
-#     with open(input_file_path) as input_file:
-#
-#     	for line in input_file:
-#     		data.append(json.loads(line))
-#     print("(%d)" % len(data), "\t", news_paper)
-#
-# # print results
-# print("\nProcess finished\n", "-"*80)
-# read_urls("Expansion")
-# read_urls("Cincodias")
-# read_urls("ElConfidencial")
-# print("")
-
-
 # ------------------------------------ #
 #  Download articles                   #
 # ------------------------------------ #
