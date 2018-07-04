@@ -44,9 +44,11 @@ class ArticleScraper(Article):
 
 		try:
 			# download source code
+			print('downloading ...')
 			self.article.download()
 
 			# parse code
+			print('parsing ...')
 			self.article.parse()
 
 			# populate article obj with parsed data
@@ -57,11 +59,12 @@ class ArticleScraper(Article):
 			self.article_obj['top_image'] = self.article.top_image
 
 			# article nlp
-			self.article.nlp()
+			# print('nlp ...')
+			# self.article.nlp()
 
-			# populate article obj with nlp data
-			self.article_obj['summary'] = self.article.summary
-			self.article_obj['keywords'] = self.article.keywords
+			# # populate article obj with nlp data
+			# self.article_obj['summary'] = self.article.summary
+			# self.article_obj['keywords'] = self.article.keywords
 
 			print(self.article_obj)
 

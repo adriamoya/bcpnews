@@ -10,10 +10,10 @@ import scrapy
 from scrapy.crawler import CrawlerProcess
 
 # Import spiders
-from expansion.expansion.spiders.expansion_spider import ExpansionSpider
-from cincodias.cincodias.spiders.cincodias_spider import CincodiasSpider
-from elconfidencial.elconfidencial.spiders.elconfidencial_spider import ElconfidencialSpider
-from eleconomista.eleconomista.spiders.eleconomista_spider import EleconomistaSpider
+from spiders.expansion.expansion.spiders.expansion_spider import ExpansionSpider
+from spiders.cincodias.cincodias.spiders.cincodias_spider import CincodiasSpider
+from spiders.elconfidencial.elconfidencial.spiders.elconfidencial_spider import ElconfidencialSpider
+from spiders.eleconomista.eleconomista.spiders.eleconomista_spider import EleconomistaSpider
 
 from utils.aux_functions import pause_execution
 from utils.check_output import check_output
@@ -28,7 +28,7 @@ if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 # Logger
-from utils.set_logger import set_logger
+from spiders.utils.set_logger import set_logger
 logger = set_logger('main')
 
 logger.info("")
@@ -70,7 +70,7 @@ process.start() # the script will block here until all crawling jobs are finishe
 
 pause_execution()
 
-from utils.article_scraper import ArticleScraper
+from spiders.utils.article_scraper import ArticleScraper
 
 # Output file
 output_file_name = './output/%s_articles.json' % crawl_date.strftime("%Y%m%d")
@@ -85,7 +85,7 @@ def process_newspaper(newspp, output_file, logger):
 
 	# Read data.
 	data = []
-	with open(input_file_path) as input_file:
+	with open(input_file_path, encoding="utf8") as input_file:
 
 		for line in input_file:
 			data.append(json.loads(line))
@@ -106,4 +106,4 @@ process_newspaper('eleconomista', output_file, logger)
 # Close output file.
 output_file.close()
 
-check_output(output_file_name)
+#check_output(output_file_name)
