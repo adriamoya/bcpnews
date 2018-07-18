@@ -12,7 +12,7 @@ class ArticleScraper(Article):
 
 	''' For a given article url, it downloads and parses some specific data and writes a JSON in the output_file '''
 
-	def __init__(self, url, output_file, logger):
+	def __init__(self, url, newspaper, output_file, logger):
 
 		''' Initialize ArticleScraper '''
 
@@ -24,6 +24,7 @@ class ArticleScraper(Article):
 
 		self.article_obj = {}
 		self.article_obj['url'] = url
+		self.article_obj['newspaper'] = newspaper
 
 		if self.article_obj:
 			self.article = Article(url, language='es')

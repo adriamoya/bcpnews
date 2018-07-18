@@ -61,7 +61,7 @@ def process_newspaper(newspp, output_file, logger):
 	logger.info('(%s) %s urls' % (str(len(data)), newspp))
 
 	for i, article in enumerate(data):
-		new_article = ArticleScraper(article['url'], output_file, logger)
+		new_article = ArticleScraper(article['url'], article['newspaper'], output_file, logger)
 
 def process_all_newspapers(crawl_date):
     # Output file

@@ -14,6 +14,7 @@ from spiders.expansion.expansion.spiders.expansion_spider import ExpansionSpider
 from spiders.cincodias.cincodias.spiders.cincodias_spider import CincodiasSpider
 from spiders.elconfidencial.elconfidencial.spiders.elconfidencial_spider import ElconfidencialSpider
 from spiders.eleconomista.eleconomista.spiders.eleconomista_spider import EleconomistaSpider
+from spiders.spiders import crawl_newspapers, process_all_newspapers
 
 from utils.aux_functions import pause_execution
 from utils.check_output import check_output
@@ -47,22 +48,15 @@ else: # if no argument specified
     crawl_date = datetime.datetime.today()
     print("\nCrawling datetime not specified. Crawling newspapers for today:", crawl_date, "\n")
 
-
-# Proceed ?
 pause_execution()
 
 logger.info('crawl_date: %s' % crawl_date.strftime("%Y%m%d"))
 
-# Multiple scraping
-
-process = CrawlerProcess()
-
-process.crawl(ExpansionSpider, crawl_date=crawl_date)
-process.crawl(CincodiasSpider, crawl_date=crawl_date)
-process.crawl(ElconfidencialSpider, crawl_date=crawl_date)
-process.crawl(EleconomistaSpider, crawl_date=crawl_date)
-
-process.start() # the script will block here until all crawling jobs are finished
+# Crawling newspapers.
+print('\nCrawling the news...')
+print('-'*80)
+crawl_newspapers(crawl_date)
+print('Done.')
 
 # ------------------------------------ #
 #  Download articles                   #
@@ -70,40 +64,8 @@ process.start() # the script will block here until all crawling jobs are finishe
 
 pause_execution()
 
-from spiders.utils.article_scraper import ArticleScraper
-
-# Output file
-output_file_name = './output/%s_articles.json' % crawl_date.strftime("%Y%m%d")
-output_file = codecs.open(output_file_name, 'w', encoding='utf-8')
-
-logger.info("")
-logger.info("Initializing download ...")
-
-def process_newspaper(newspp, output_file, logger):
-
-	input_file_path = "./output/urls_%s.json" % newspp
-
-	# Read data.
-	data = []
-	with open(input_file_path, encoding="utf8") as input_file:
-
-		for line in input_file:
-			data.append(json.loads(line))
-
-
-	# Download, parse and store articles.
-	logger.info('(%s) %s urls' % (str(len(data)), newspp))
-
-	for article in data:
-		new_article = ArticleScraper(article['url'], output_file, logger)
-
-
-process_newspaper('expansion', output_file, logger)
-process_newspaper('cincodias', output_file, logger)
-process_newspaper('elconfidencial', output_file, logger)
-process_newspaper('eleconomista', output_file, logger)
-
-# Close output file.
-output_file.close()
-
-#check_output(output_file_name)
+# Save all articles into a unique JSON (YYYYMMDD_articles.json`).
+print('\nProcessing all the articles and saving them...')
+print('-'*80)
+process_all_newspapers(crawl_date)
+print('Done.')
