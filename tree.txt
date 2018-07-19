@@ -13,27 +13,23 @@
 │   │           └── spiders
 │   └── 3_newspaper_scraper
 │       └── analyses
-│           └── cleaned_datasets
 ├── 2_modelling
 │   ├── classification
-│   │   └── models
-│   ├── data
-│   ├── similarity
-│   └── submissions
+│   └── similarity
 └── 3_production
-    ├── cincodias
-    │   └── cincodias
-    │       └── spiders
-    ├── elconfidencial
-    │   └── elconfidencial
-    │       └── spiders
-    ├── eleconomista
-    │   └── eleconomista
-    │       └── spiders
-    ├── expansion
-    │   └── expansion
-    │       └── spiders
     ├── output
+    ├── spiders
+    │   ├── cincodias
+    │   │   └── cincodias
+    │   │       └── spiders
+    │   ├── elconfidencial
+    │   │   └── elconfidencial
+    │   │       └── spiders
+    │   ├── eleconomista
+    │   │   └── eleconomista
+    │   │       └── spiders
+    │   ├── expansion
+    │   │   └── expansion
+    │   │       └── spiders
+    │   └── utils
     └── utils
-
-36 directories
