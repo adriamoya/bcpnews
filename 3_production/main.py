@@ -17,12 +17,8 @@ from spiders.elconfidencial.elconfidencial.spiders.elconfidencial_spider import 
 from spiders.eleconomista.eleconomista.spiders.eleconomista_spider import EleconomistaSpider
 from spiders.spiders import crawl_newspapers, process_all_newspapers
 
-from utils.aux_functions import pause_execution
+from utils.aux_functions import get_date_input, pause_execution
 from utils.check_output import check_output
-
-# ------------------------------------ #
-#  Run spiders                         #
-# ------------------------------------ #
 
 # Create output directory if not exists
 output_dir = 'output'
@@ -36,22 +32,16 @@ logger = set_logger('main')
 logger.info("")
 logger.info("Initializing run spiders ...")
 
-# Input control: crawl date
-if len(sys.argv) > 1: # if passed as an argument
-    if len(sys.argv[1]) == 8: # valid YYYYMMDD date format
-        crawl_date_input = sys.argv[1]
-        crawl_date = datetime.datetime.strptime(crawl_date_input,"%Y%m%d")
-        print("\nCrawling datetime is:", crawl_date.strptime(crawl_date_input,"%Y%m%d"), "\n")
-    else:
-        raise ValueError('The input date format expected is YYYYMMDD. Please try again.')
-
-else: # if no argument specified
-    crawl_date = datetime.datetime.today()
-    print("\nCrawling datetime not specified. Crawling newspapers for today:", crawl_date, "\n")
-
-pause_execution()
+# Request input date to crawl. Default is today().
+crawl_date = get_date_input() #datetime.datetime.strptime('20180608',"%Y%m%d")
 
 logger.info('crawl_date: %s' % crawl_date.strftime("%Y%m%d"))
+
+# ------------------------------------ #
+#  Run spiders                         #
+# ------------------------------------ #
+
+pause_execution()
 
 # Crawling newspapers.
 print('\nCrawling the news...')
